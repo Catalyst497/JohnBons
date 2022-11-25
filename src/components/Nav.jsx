@@ -35,7 +35,14 @@ export default function Nav() {
 		list: ['Latest News', 'Blog', 'Newsletter', 'Podcast', 'Activity Report'],
 	};
 
-	const { isDesktop, setIsDesktop, setSearchOpen, setKeyword, setSearchResults, setBeds } = useContext(AppContext);
+	const {
+		isDesktop,
+		setIsDesktop,
+		setSearchOpen,
+		setKeyword,
+		setSearchResults,
+		setBeds,
+	} = useContext(AppContext);
 	const [navOpen, setNavOpen] = useState(false);
 	const [dropOpen, setDropOpen] = useState(false);
 	const [activeDropdown, setActiveDropdown] = useState(true);
@@ -93,7 +100,7 @@ export default function Nav() {
 								onClick={() => {
 									setKeyword(null);
 									setSearchResults([]);
-									setBeds('1')
+									setBeds('1');
 									setSearchOpen(true);
 								}}
 							/>
@@ -138,7 +145,14 @@ export default function Nav() {
 						<Twitter /> <Facebook /> <Youtube />
 					</div>
 					<div className="h-10 w-10 grid place-items-center bg-black rounded-full text-white hover:opacity-[.7] transition-[opacity]">
-						<Search onClick={() => setSearchOpen(true)} />
+						<Search
+							onClick={() => {
+								setKeyword(null);
+								setSearchResults([]);
+								setBeds('1');
+								setSearchOpen(true);
+							}}
+						/>
 					</div>
 				</div>
 			</div>
@@ -150,8 +164,8 @@ export default function Nav() {
 			{/* Mobile Dropdown */}
 			{!isDesktop && (
 				<div
-					className={`absolute bg-white inset-x-0 top-0 h-screen w-screen px-10 py-12 translate-x-[100%] transition-[transform] ${
-						dropOpen ? 'translate-x-0' : ''
+					className={`absolute bg-white inset-x-0 top-0 h-screen w-screen px-10 py-12 z-[80]  transition-[transform] ${
+						dropOpen ? 'translate-x-0' : 'translate-x-[100%]'
 					}`}
 				>
 					<div

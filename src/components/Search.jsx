@@ -10,7 +10,7 @@ export default function SearchComp() {
 	return (
 		<div
 			ref={searchRef}
-			className="fixed inset-0 h-screen w-screen bg-white z-[100] text-black flex justify-center items-center transition-[opacity] duration-[500ms]"
+			className="fixed inset-0 h-screen w-screen bg-white z-[200] text-black flex justify-center items-center transition-[opacity] duration-[500ms]"
 		>
 			<div className="absolute top-8 right-8 rounded-full grid place-items-center h-12 w-12 bg-white text-black">
 				<X className="" onClick={() => setSearchOpen(false)} />
