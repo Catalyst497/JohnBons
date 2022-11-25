@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Lobster+Two:wght@400;700&family=Nunito+Sans:wght@200;300;400;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	@apply font-open-sans pt-8 md:pt-36 tracking-wide text-[0.8rem] md:text-[1rem] text-text-gray;
+}
+h1 {
+	@apply text-black;
+}
+.fl-itcn {
+	@apply flex items-center;
+}
+.dropdown-with-arrow {
+	@apply flex items-center gap-2 py-4;
+}
+button {
+	border: none;
+	outline: none;
+}
+input:focus {
+	outline: none;
+}
+.triangle {
+	width: 0;
+	height: 0;
+	border-left: 8rem solid transparent;
+	border-right: 8rem solid transparent;
+	border-bottom: 10rem solid white;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+hr.round {
+	border-color: #636769;
+	border-width: 2px;
+	width: 2px;
+}
+.navhover {
+	@apply relative before:absolute before:h-[40%] before:w-[100%] before:bg-black/10 before:bottom-0 before:opacity-0 hover:before:opacity-100 before:transition-[opacity] before:duration-[.5s]
+}
