@@ -38,29 +38,32 @@ export default function Footer() {
 								isDesktop ? '' : 'flex justify-between'
 							}`}
 						>
-							<div>Our Markets</div>{' '}
-							{marketsOpen ? (
-								<Minus
-									onClick={() => {
-										setMarketsOpen(false);
-									}}
-								/>
-							) : (
-								<Plus
-									className=""
-									onClick={() => {
-										setMarketsOpen(true);
-										setResourcesOpen(false);
-									}}
-								/>
-							)}{' '}
+							<div className="text-[1.2rem]">Our Markets</div>{' '}
+							{!isDesktop &&
+								(marketsOpen ? (
+									<Minus
+										onClick={() => {
+											setMarketsOpen(false);
+										}}
+									/>
+								) : (
+									<Plus
+										className=""
+										onClick={() => {
+											setMarketsOpen(true);
+											setResourcesOpen(false);
+										}}
+									/>
+								))}{' '}
 						</div>
 						<ul
 							className={`${
-								isDesktop ? 'flex' : ''
-							} gap-12 transition-[height] ${
-								marketsOpen ? 'h-auto overflow-visible' : 'h-0 overflow-hidden'
-							}`}
+								isDesktop
+									? 'flex'
+									: marketsOpen
+									? 'h-auto overflow-visible'
+									: 'h-0 overflow-hidden'
+							} gap-12 transition-[height]`}
 						>
 							<div>
 								<li className="flex-1 py-2">Atlanta</li>
@@ -93,27 +96,28 @@ export default function Footer() {
 								isDesktop ? '' : 'flex justify-between'
 							}`}
 						>
-							<div>Resources</div>{' '}
-							{resourcesOpen ? (
-								<Minus onClick={() => setResourcesOpen(false)} />
-							) : (
-								<Plus
-									className=""
-									onClick={() => {
-										setResourcesOpen(true);
-										setMarketsOpen(false);
-									}}
-								/>
-							)}{' '}
+							<div className="text-[1.2rem]">Resources</div>{' '}
+							{!isDesktop &&
+								(resourcesOpen ? (
+									<Minus onClick={() => setResourcesOpen(false)} />
+								) : (
+									<Plus
+										className=""
+										onClick={() => {
+											setResourcesOpen(true);
+											setMarketsOpen(false);
+										}}
+									/>
+								))}{' '}
 						</div>
 						<ul
 							className={`${
-								isDesktop ? 'flex' : ''
-							} gap-12 transition-[height] ${
-								resourcesOpen
+								isDesktop
+									? ''
+									: resourcesOpen
 									? 'h-auto overflow-visible'
 									: 'h-0 overflow-hidden'
-							}`}
+							} gap-12 transition-[height]`}
 						>
 							<li className="flex-1 py-2">Partnership inquiries</li>
 							<li className="flex-1 py-2">Media Inquires</li>
@@ -128,42 +132,30 @@ export default function Footer() {
 					</div>
 					<div>
 						<div className="py-4 font-semibold">
-							<div>Connect</div>{' '}
+							<div className="text-[1.2rem]">Connect</div>{' '}
 						</div>
 						<ul className="">
 							<li className="flex-1 py-2 flex items-center gap-4">
-								<div
-									className="w-12 h-12 grid place-items-center rounded-full bg-black"
-									size={16}
-								>
-									<Facebook className="text-white" />
+								<div className="w-8 h-8 grid place-items-center rounded-full bg-black">
+									<Facebook size={16} className="text-white" />
 								</div>
 								<div className="font-bold">Facebook</div>
 							</li>
 							<li className="flex-1 py-2 flex items-center gap-4">
-								<div
-									className="w-12 h-12 grid place-items-center rounded-full bg-black"
-									size={16}
-								>
-									<Twitter className="text-white" />
+								<div className="w-8 h-8 grid place-items-center rounded-full bg-black">
+									<Twitter size={16} className="text-white" />
 								</div>
 								<div className="font-bold">Twitter</div>
 							</li>
 							<li className="flex-1 py-2 flex items-center gap-4">
-								<div
-									className="w-12 h-12 grid place-items-center rounded-full bg-black"
-									size={16}
-								>
-									<Instagram className="text-white" />
+								<div className="w-8 h-8 grid place-items-center rounded-full bg-black">
+									<Instagram size={16} className="text-white" />
 								</div>
 								<div className="font-bold">Instagram</div>
 							</li>
 							<li className="flex-1 py-2 flex items-center gap-4">
-								<div
-									className="w-12 h-12 grid place-items-center rounded-full bg-black"
-									size={16}
-								>
-									<Youtube className="text-white" />
+								<div className="w-8 h-8 grid place-items-center rounded-full bg-black">
+									<Youtube size={16} className="text-white" />
 								</div>
 								<div className="font-bold">Youtube</div>
 							</li>
