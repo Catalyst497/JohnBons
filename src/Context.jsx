@@ -17,6 +17,7 @@ const AppContextProvider = (props) => {
 	const [searchActive, setSearchActive] = useState(false);
 	const [beds, setBeds] = useState('1');
 	const searchRef = useRef();
+	const searchCompleted = useRef(false);
 
 	useEffect(() => {
 		if (!searchOpen) {
@@ -60,6 +61,7 @@ const AppContextProvider = (props) => {
 			.then(function (response) {
 				if (response.data) setSearchResults(response.data.listings);
 				else setSearchResults([]);
+				searchCompleted.current = true;
 				navigate('/searchresults');
 				setSearchOpen(false);
 				setSearchActive(false)
@@ -71,7 +73,6 @@ const AppContextProvider = (props) => {
 	};
 
 	const getProperties = async () => {
-		// setSearchOpen(false);
 		setSearchActive(true);
 		const options = {
 			method: 'GET',
@@ -110,6 +111,7 @@ const AppContextProvider = (props) => {
 				searchOpen,
 				setSearchOpen,
 				searchRef,
+				searchCompleted,
 				searchClose,
 				setSearchClose,
 				searchActive,

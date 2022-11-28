@@ -5,7 +5,7 @@ import {Circles, TailSpin} from 'react-loader-spinner';
 import { AppContext } from '../Context';
 
 export default function SearchComp() {
-	const { setKeyword, setResponse, getProperties, setSearchOpen, searchRef, setBeds, searchActive } =
+	const { setKeyword, setResponse, getProperties, setSearchOpen, searchRef, setBeds, searchActive, searchCompleted } =
 		useContext(AppContext);
 	return (
 		<div
@@ -20,8 +20,8 @@ export default function SearchComp() {
 					Search through different real estate houses
 				</div>
 
-				<div className="flex flex-col md:flex-row mt-12 px-8 justify-between text-start">
-					<div>
+				<div className="flex flex-col items-center md:flex-row mt-12 px-8 justify-between text-start">
+					<div className="flex flex-col items-center">
 						<div>Enter Location</div>
 						<div className="flex gap-6 text-black bg-white rounded-[0.5rem] px-4 py-2">
 							<Search className="text-black" />
@@ -36,7 +36,7 @@ export default function SearchComp() {
 							/>
 						</div>
 					</div>
-					<div>
+					<div className="flex flex-col items-center">
 						<div>Minimum Number of beds</div>
 						<div className="flex gap-6 text-black bg-white rounded-[0.5rem] px-4 py-2">
 							<input
@@ -55,11 +55,11 @@ export default function SearchComp() {
 						type="button"
 						onClick={getProperties}
 						className={`${
-							searchActive ? 'flex justify-between items-center' : ''
+							searchActive ? 'flex justify-between items-center gap-8' : ''
 						} py-2 px-4 mx-auto rounded-[0.5rem] bg-white text-black shadow-sm hover:shadow-lg transition-[box-shadow] font-semibold w-[50%]`}
 					>
 						<div className="text-center">Search</div>
-						{searchActive && <TailSpin color="black" height="32" width="32" />}
+						{(searchActive && !searchCompleted.current) && <TailSpin color="black" height="32" width="32" />}
 					</button>
 				</div>
 			</main>

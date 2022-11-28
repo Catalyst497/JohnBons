@@ -42,6 +42,7 @@ export default function Nav() {
 		setKeyword,
 		setSearchResults,
 		setBeds,
+		searchCompleted,
 	} = useContext(AppContext);
 	const [navOpen, setNavOpen] = useState(false);
 	const [dropOpen, setDropOpen] = useState(false);
@@ -151,6 +152,8 @@ export default function Nav() {
 								setSearchResults([]);
 								setBeds('1');
 								setSearchOpen(true);
+								setNavOpen(false);
+								searchCompleted.current = false;
 							}}
 						/>
 					</div>

@@ -6,9 +6,9 @@ import Home from './pages/Home';
 import Gallery from './pages/Gallery';
 
 function App() {
-	const { searchResults } = useContext(AppContext);
+	const { searchResults, searchCompleted } = useContext(AppContext);
 	const ProtectedSearch = ({ children }) => {
-		if (!searchResults.length) return <Navigate to="/" replace />;
+		if (!searchCompleted.current) return <Navigate to="/" replace />;
 		return children;
 	};
 
