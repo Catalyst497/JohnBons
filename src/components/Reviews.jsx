@@ -52,7 +52,7 @@ export default function Reviews() {
 	];
 	return (
 		<section className='py-8 bg-white text-black'>
-            <div className="section-title- font-semibold text-[2rem] md:text-[3rem] text-black text-center">What are the people saying?</div>
+            <div className="section-title- font-semibold text-[1.5rem] md:text-[3rem] text-black text-center py-2">What are the people saying?</div>
 			<Swiper
 				slidesPerView={'auto'}
 				spaceBetween={30}
