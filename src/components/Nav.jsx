@@ -56,7 +56,13 @@ export default function Nav() {
 			className="fixed z-[60] top-0 inset-x-0 fl-itcn bg-white justify-between px-4 md:px-12 py-4 text-[1rem] shadow-sm"
 		>
 			<div className="fl-itcn text-center logo- text-[2rem] md:text-[2.5rem] font-bold text-black uppercase">
-				<Link to="/">JohnBons</Link>
+				<Link to="/">
+					<img
+						src="./img/logo-transparent.png"
+						className="w-[4rem] h-[4rem] md:w-[5.5rem] md:h-[5.5rem]"
+						alt=""
+					/>
+				</Link>
 			</div>
 			{/* Desktop Side Menu */}
 			{isDesktop ? (

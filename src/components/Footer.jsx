@@ -22,8 +22,13 @@ export default function Footer() {
 			<div>
 				<div className="flex md:flex-row flex-col gap-12 w-[85%] mx-auto">
 					<div>
-						<div className="fl-itcn logo- text-[1.5rem] md:text-[2rem] font-bold text-black uppercase">
-							<Link to="/">JohnBons</Link>
+						<div className="fl-itcn gap-4 logo- text-[1.5rem] md:text-[2rem] font-semibold text-black uppercase">
+							<img
+								src="./img/logo-transparent.png"
+								className="w-[4rem] h-[4rem] md:w-[5.5rem] md:h-[5.5rem]"
+								alt=""
+							/>
+							<div>JohnBons</div>
 						</div>
 						<div className="pt-12">
 							<div>Need Support?</div>
