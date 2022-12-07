@@ -25,7 +25,7 @@ export default function Hero() {
 		}
 	];
 	return (
-		<div className="hero- flex items-start justify-center flex-col relative px-4 md:px-12 md:overflow-hidden h-[110vh] md:h-[140vh]">
+		<div className="hero- flex items-start justify-center flex-col relative px-4 md:px-12 md:overflow-hidden h-auto md:h-[140vh] mb-8">
 			<div className="flex flex-col md:flex-row item-stretch md:h-full">
 				<div className="md:w-[50%]">
 					<div className=" flex flex-col justify-start md:pt-20">

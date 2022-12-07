@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 body {
-	@apply font-open-sans pt-8 md:pt-36 tracking-wide text-[0.8rem] md:text-[1rem] text-text-gray;
+	@apply font-open-sans pt-28 md:pt-36 tracking-wide text-[0.8rem] md:text-[1rem] text-text-gray;
 }
 h1 {
 	@apply text-black;
