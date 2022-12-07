@@ -9,6 +9,10 @@ export default function Gallery() {
 	return (
 		<div className="w-[90%] mx-auto py-12 bg-gray-100">
 			{!searchClose ? <Search /> : ''}
+			<div className="md:text-[1.5rem] text-[1.2rem] font-semibold w-[80%] md:w-[90%] mx-auto">
+				Displayed <span className="font-bold">{searchResults.length} </span>
+				results.
+			</div>
 			<div className="flex flex-wrap justify-center gap-8 my-[3rem]">
 				{searchResults.map((item, i) => {
 					const { address, photo, price_raw, beds, sqft, baths } = item;

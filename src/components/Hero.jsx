@@ -29,7 +29,7 @@ export default function Hero() {
 			<div className="flex flex-col md:flex-row item-stretch md:h-full">
 				<div className="md:w-[50%]">
 					<div className=" flex flex-col justify-start md:pt-20">
-						<h1 className="font-DM-serif text-[3rem] md:text-[4rem] text-primary-brown leading-tight">
+						<h1 className="font-DM-serif text-[2.5rem] md:text-[4rem] text-primary-brown leading-tight">
 							Providing certainty on the journey to homeownership
 						</h1>
 						<p className="py-10">
