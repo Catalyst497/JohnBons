@@ -1,11 +1,23 @@
-import { useContext } from 'react';
+import { useEffect } from 'react';
+import { useContext, useRef } from 'react';
 import { AppContext } from '../Context';
+
 
 // Util Components
 import Trustees from '../utils/Trustees';
 
 export default function Hero() {
-	const { isDesktop, setIsDesktop } = useContext(AppContext);
+	const { isDesktop, setIsDesktop, gsap} = useContext(AppContext);
+	const heroImage = useRef(null)
+	useEffect(() => {
+		const el = heroImage.current;
+		gsap.fromTo(el, {autoAlpha: 0}, {autoAlpha: 1, duration: 0.3, scrollTrigger: {
+			trigger: el
+		}})
+	}, [])
+	useEffect(() => {
+		
+	})
 	const trustedBys = [
 		{
 			name: 'audiophile',
@@ -46,7 +58,7 @@ export default function Hero() {
 					</div>
 					{isDesktop && <Trustees trustedBys={trustedBys} />}
 				</div>
-				<div className="md:w-[50%] relative">
+				<div ref={heroImage} className="md:w-[50%] relative">
 					<div className="md:absolute top-[5rem] left-[-5rem] md:w-[150%] ">
 						<img
 							src="./img/undraw_house_searching.svg"

@@ -4,6 +4,8 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import SharedLayout from './components/SharedLayout';
 import Home from './pages/Home';
 import Gallery from './pages/Gallery';
+import ProductPage from './pages/ProductPage';
+import gsap from 'gsap';
 
 function App() {
 	const { searchResults, searchCompleted } = useContext(AppContext);
@@ -20,8 +22,14 @@ function App() {
 					<Route
 						path={'/searchresults'}
 						element={
+								<Gallery />
+						}
+					/>
+					<Route
+						path={'/homes/:property_id'}
+						element={
 							<ProtectedSearch>
-							<Gallery />
+								<ProductPage />
 							</ProtectedSearch>
 						}
 					/>

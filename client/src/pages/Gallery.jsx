@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Search from '../components/Search';
 
 import { AppContext } from '../Context';
 
 export default function Gallery() {
-	const { searchClose, searchResults } = useContext(AppContext);
+	const { searchClose } = useContext(AppContext);
+	const searchResults = JSON.parse(localStorage.getItem('searchResults'))
 	return (
 		<div className="w-[90%] mx-auto py-12 bg-gray-100">
 			{!searchClose ? <Search /> : ''}
@@ -15,11 +16,11 @@ export default function Gallery() {
 			</div>
 			<div className="flex flex-wrap justify-center gap-8 my-[3rem]">
 				{searchResults.map((item, i) => {
-					const { address, photo, price_raw, beds, sqft, baths } = item;
+					const { property_id, address, photo, price_raw, beds, sqft, baths } = item;
 					return (
-						<div key={i} className="max-w-[15rem] bg-white shadow-lg pb-4">
+						<div key={i} className={`max-w-[15rem] bg-white shadow-lg pb-4`}>
 							<div className="h-[10rem] overflow-hidden">
-								<Link to="">
+								<Link to={`/homes/${property_id}`}>
 									<img
 										src={photo}
 										alt=""

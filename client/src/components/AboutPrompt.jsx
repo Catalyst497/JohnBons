@@ -1,13 +1,32 @@
-import React from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
+import { AppContext } from '../Context';
 
 export default function AboutPrompt() {
+	const { gsap, isDesktop } = useContext(AppContext);
+	const promptItem = useRef([]);
+	useEffect(() => {
+		const timeline = gsap.timeline({
+			defaults: { duration: 0.5 },
+			scrollTrigger: {
+				trigger: promptItem.current[0],
+			},
+		});
+		timeline.from(promptItem.current, {
+			opacity: 0,
+			translateY: isDesktop ? '-100%' : 0,
+			stagger: 0.3,
+		});
+	}, []);
 	return (
 		<section className="AboutPrompt">
 			<div className="bg-gray-100 p-4 md:p-12 text-black">
 				<div className="section-title text-[1.8rem] md:text-[3rem] pb-[2rem] md:pb-20 font-bold text-center pt-6 ">
 					Get on the path to home ownership
 				</div>
-				<div className="flex flex-wrap justify-between items-start">
+				<div
+					ref={(el) => (promptItem.current[0] = el)}
+					className="flex flex-wrap justify-between items-start"
+				>
 					<div className="text-center md:max-w-[28%] flex flex-col items-center">
 						<div className="relative">
 							<div className="relative z-10 w-full h-[10rem] md:w-[20rem] md:h-[20rem] overflow-hidden flex justify-center items-center">
@@ -28,7 +47,10 @@ export default function AboutPrompt() {
 							</div>
 						</div>
 					</div>
-					<div className="text-center md:max-w-[28%] flex flex-col items-center">
+					<div
+						ref={(el) => (promptItem.current[1] = el)}
+						className="text-center md:max-w-[28%] flex flex-col items-center"
+					>
 						<div className="relative ">
 							<div className="relative z-10 w-full h-[10rem] md:w-[20rem] md:h-[20rem] overflow-hidden flex justify-center items-center">
 								<img
@@ -49,7 +71,10 @@ export default function AboutPrompt() {
 							</div>
 						</div>
 					</div>
-					<div className="text-center md:max-w-[28%] flex flex-col items-center">
+					<div
+						ref={(el) => (promptItem.current[2] = el)}
+						className="text-center md:max-w-[28%] flex flex-col items-center"
+					>
 						<div className="relative ">
 							<div className="relative z-10 w-full h-[10rem] md:w-[20rem] md:h-[20rem] overflow-hidden flex justify-center items-center">
 								<img

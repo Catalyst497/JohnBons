@@ -1,6 +1,12 @@
 import { useState, useEffect, useRef, createContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+
+//GSAP
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
+
 //create a context, with createContext api
 export const AppContext = createContext();
 
@@ -30,6 +36,12 @@ const AppContextProvider = (props) => {
 		}
 	}, [searchOpen]);
 
+	// Change the search completed ref to true when the page load with some content in the LocalStorage.
+	useEffect(() => {
+		if (JSON.parse(localStorage.getItem('searchResults'))?.length)
+			searchCompleted.current = true;
+	});
+
 	function windowResize() {
 		window.innerWidth > 768 ? setIsDesktop(true) : setIsDesktop(false);
 	}
@@ -38,63 +50,32 @@ const AppContextProvider = (props) => {
 
 		return window.removeEventListener('resize', () => windowResize());
 	}, []);
-	const getListedEstates = async (city, stateCode) => {
-		const options = {
-			method: 'GET',
-			url: 'https://realty-in-us.p.rapidapi.com/properties/list-for-sale',
-			params: {
-				state_code: stateCode,
-				city: city,
-				offset: '0',
-				limit: '200',
-				sort: 'relevance',
-				beds_min: beds ? beds : '1',
-			},
-			headers: {
-				'X-RapidAPI-Key': 'b01c10cd85mshde5bc35ca808ed7p1aa70bjsn3ad5993667e0',
-				'X-RapidAPI-Host': 'realty-in-us.p.rapidapi.com',
-			},
-		};
-
-		await axios
-			.request(options)
-			.then(function (response) {
-				if (response.data) setSearchResults(response.data.listings);
-				else setSearchResults([]);
-				searchCompleted.current = true;
-				navigate('/searchresults');
-				setSearchOpen(false);
-				setSearchActive(false)
-			})
-			.catch(function (error) {
-				console.error(error);
-				setSearchOpen(false);
-			});
-	};
 
 	const getProperties = async () => {
 		setSearchActive(true);
-		const options = {
-			method: 'GET',
-			url: 'https://realty-in-us.p.rapidapi.com/locations/v2/auto-complete',
-			params: { input: keyword, limit: '10' },
-			headers: {
-				'X-RapidAPI-Key': 'b01c10cd85mshde5bc35ca808ed7p1aa70bjsn3ad5993667e0',
-				'X-RapidAPI-Host': 'realty-in-us.p.rapidapi.com',
-			},
-		};
-
 		await axios
-			.request(options)
-			.then(function (response) {
-				const placeWithCity = response.data.autocomplete.find(
-					(place) => place.city
-				);
-				const { state_code, city } = placeWithCity;
-				getListedEstates(city, state_code);
+			.post('http://localhost:3000/message', {
+				keyword: keyword,
+				beds: beds,
 			})
-			.catch(function (error) {
-				console.error(error);
+			.then((response) => {
+				setSearchResults(response.data?.data);
+				searchCompleted.current = true;
+				navigate('/searchresults');
+				setSearchOpen(false);
+				setSearchActive(false);
+				localStorage.setItem(
+					'searchResults',
+					JSON.stringify(response.data?.data)
+				);
+				console.log(searchResults);
+			})
+			.catch((err) => {
+				setSearchOpen(false);
+				console.log(err);
+				alert(
+					'There was an error connecting to the server. Please check your connection.'
+				);
 			});
 	};
 	return (
@@ -118,6 +99,7 @@ const AppContextProvider = (props) => {
 				setSearchActive,
 				beds,
 				setBeds,
+				gsap,
 
 				// Functions
 				getProperties,
