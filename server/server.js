@@ -6,6 +6,7 @@ const path = require('path')
 
 const app = express();
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 //API CALL
@@ -67,7 +68,7 @@ async function apiCall(keyword, beds) {
 // ROUTES
 
 // Have Node serve the files for our built React app
-app.use(express.static(path.resolve(__dirname, '../client/build')));
+app.use(express.static(path.resolve(__dirname, '../client/dist')));
 app.post('/message', async (req, res) => {
 	const {keyword, beds} = req.body;
 	await apiCall(keyword, beds);
@@ -76,7 +77,8 @@ app.post('/message', async (req, res) => {
 
 // All other GET requests not handled before will return our React app
 app.get('*', (req, res) => {
-	res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+	const filePath = path.resolve(__dirname, '../client/dist/index.html');
+	res.sendFile(filePath);
 });
 
 const PORT = 3000;

@@ -4,8 +4,10 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
+		"dev": "nodemon server/server.js",
 		"start": "node server/server.js",
-		"build": "cd client && npm install && npm run build"
+		"build": "cd client && npm install && npm run build",
+		"dist": "cd client && npm run build"
 	},
 	"author": "Catalyst",
 	"license": "ISC",
