@@ -22,15 +22,15 @@ function App() {
 					<Route
 						path={'/searchresults'}
 						element={
+							<ProtectedSearch>
 								<Gallery />
+							</ProtectedSearch>
 						}
 					/>
 					<Route
 						path={'/homes/:property_id'}
 						element={
-							<ProtectedSearch>
 								<ProductPage />
-							</ProtectedSearch>
 						}
 					/>
 				</Route>
