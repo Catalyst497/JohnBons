@@ -10,13 +10,12 @@ export default function Trustees({ trustedBys }) {
 				<div className="flex flex-wrap w-full justify-center md:justify-between gap-x-8 gap-y-4 md:gap-y-8 px-4 md:px-0">
 					{trustedBys.map((truster, i) => {
 						return (
-							<div className="w-[40%] flex justify-center md:justify-start">
+							<div key={i} className="w-[40%] flex justify-center md:justify-start">
 								<img
 									src={truster.img}
 									alt={truster.name}
 									className=" w-[4rem] md:w-[7rem] h-[1.5rem] md:h-[3rem]"
 									loading="lazy"
-									key={i}
 								/>
 							</div>
 						);
